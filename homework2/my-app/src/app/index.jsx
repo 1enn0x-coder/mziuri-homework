@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { FlatList, StyleSheet, Text } from "react-native";
+import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Link } from "expo-router";
+
 import Card from "../components/card.jsx";
 import CardForm from "../components/cardform.jsx";
 
@@ -20,6 +22,12 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Text style={styles.screenTitle}>Card List</Text>
+
+      <Link href="/todos" asChild>
+        <TouchableOpacity style={styles.todosLink} activeOpacity={0.7}>
+          <Text style={styles.todosLinkText}>Open todos</Text>
+        </TouchableOpacity>
+      </Link>
 
       <FlatList
         data={cards}
@@ -46,6 +54,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     margin: 16,
+  },
+  todosLink: {
+    backgroundColor: "#16a34a",
+    padding: 12,
+    borderRadius: 8,
+    alignSelf: "flex-start",
+    marginHorizontal: 16,
+  },
+  todosLinkText: {
+    color: "#fff",
+    fontWeight: "600",
   },
   list: {
     padding: 16,
