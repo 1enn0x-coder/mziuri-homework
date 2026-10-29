@@ -24,6 +24,8 @@ export default function TodosScreen() {
     isPending,
     isError,
     error,
+    isRefetching,
+    refetch,
   } = useQuery({
     queryKey: ["todos"],
     queryFn: fetchTodos,
@@ -52,6 +54,8 @@ export default function TodosScreen() {
         data={todos}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.list}
+        refreshing={isRefetching}
+        onRefresh={() => refetch()}
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.title}>{item.title}</Text>
